@@ -235,7 +235,7 @@ public class Classification {
 					}
 		}
 		/**
-		 *  the multi-graph DC likelihood only works for directed (now) graphs with self loops. 
+		 *  the multi-graph DC likelihood only works for directed graphs with self loops. 
 		 */
 		else {
 			if (graph.isDirected()) {
@@ -327,7 +327,7 @@ public class Classification {
 				aGroup[newg][type] += graph.vList[n].targetCount.get(j);
 			}// for self loops (needs update)
 			if (graph.hasSelfloop()) {
-				if (graph.vtxSelfloopFlag[n] == 1) {
+				if (graph.vtxSelfloopCount[n] > 0 ) {
 					aGroup[newg][newg]++;
 					aGroup[oldg][newg]--;
 					aGroup[oldg][oldg]++;
