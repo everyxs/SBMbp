@@ -29,7 +29,7 @@ public class SyntheticBlocks {
 		
 		String out = path.concat("/test"+n); //index the output files
 		try {
-			output = new FileOutputStream(out + "g2.gml"); //output file suffix
+			output = new FileOutputStream(out + "g5.gml"); //output file suffix
 		}
 		catch (FileNotFoundException ex) {
 			ex.printStackTrace();
@@ -77,6 +77,6 @@ public class SyntheticBlocks {
 	public static void main ( String[] args ) {
 		String currentDir = System.getProperty("user.dir");
 		String dir = currentDir + "/data/test";
-		new SyntheticBlocks(1000, 2, dir, 0.05, 0.005); //set the block parameters here
+		new SyntheticBlocks(1000, 5, dir, 0.2, 0.02); //set the block parameters here
 	}
 }

@@ -85,7 +85,7 @@ public class Graph {
 	
 	// --- Instance Variables ----------------------------------------------------
 	public Vertex[] vList; //list of vertices
-	public byte[] vtxSelfloopFlag; //indicate which vertices have self-loop 
+	public int[] vtxSelfloopCount; //indicate which vertices have self-loop 
 	public ArrayList<String> listIndex2Id = new ArrayList<String>();
 	public ArrayList<String> listType2Value = new ArrayList<String>();
 	public ArrayList<Integer> listIndex2Type = new ArrayList<Integer>();
@@ -119,7 +119,7 @@ public class Graph {
 		    	String svalue="";
 		    	directed = false;
 		    	selfLoop = false; //set the selfLoop parameter
-		    	multiEdge = true;
+		    	multiEdge = false;
 		    	degreeCorrect = DC;
 		    	StringTokenizer tokens;
 		    	numVtx = 0; //number of vertices
@@ -174,11 +174,11 @@ public class Graph {
 		    		if (word.equals("edge") && end == false) {
 		    			numType = numTrueType;
 		    			if (end == false) {
-		    				vtxSelfloopFlag=new byte[numVtx];
+		    				vtxSelfloopCount=new int[numVtx];
 		    				vList = new Vertex[numVtx]; 
 		    				System.out.println("numVtx: "+numVtx);
 		    				for (int i=0; i<numVtx; i++) {
-		    					vtxSelfloopFlag[i]=0;
+		    					vtxSelfloopCount[i]=0;
 		    					vList[i] = new Vertex(); //initialize the edge lists
 		    					vList[i].index = i;
 		    					vList[i].id = listIndex2Id.get(i);
@@ -208,9 +208,9 @@ public class Graph {
 		    			if(invalidedge||(target==-1))
 		    				continue;
 		    			if(source==target){ //eliminate self loops
-		    				vtxSelfloopFlag[source]=1;
+		    				vtxSelfloopCount[source]++;
 		    				//numEgs++;
-		    				//selfLoop = true;
+		    				selfLoop = true;
 		    			}
 			    		else {
 			    			if (vList[source].addTarget(target)) {
@@ -290,7 +290,7 @@ public class Graph {
 		    	String svalue="";
 		    	directed = false;
 		    	selfLoop = false; //set the selfLoop parameter
-		    	multiEdge = true;
+		    	multiEdge = false;
 		    	degreeCorrect = false;
 		    	StringTokenizer tokens;
 		    	numVtx = 0; //number of vertices
@@ -342,11 +342,11 @@ public class Graph {
 		    		if (word.equals("edge") && end == false) {
 		    			numType = numTrueType;
 		    			if (end == false) {
-		    				vtxSelfloopFlag=new byte[numVtx];
+		    				vtxSelfloopCount=new int[numVtx];
 		    				vList = new Vertex[numVtx]; 
 		    				System.out.println("numVtxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx: "+numVtx);
 		    				for (int i=0; i<numVtx; i++) {
-		    					vtxSelfloopFlag[i]=0;
+		    					vtxSelfloopCount[i]=0;
 		    					vList[i] = new Vertex(); //initialize the edge lists
 		    					vList[i].index = i;
 		    					vList[i].id = listIndex2Id.get(i);
@@ -420,10 +420,10 @@ public class Graph {
 		typeP = input.typeP;
 		gNode = input.gNode;
 		
-		vtxSelfloopFlag=new byte[numVtx];
+		vtxSelfloopCount=new int[numVtx];
 		vList = new Vertex[numVtx];
 		for (int i=0; i<numVtx; i++) {
-			vtxSelfloopFlag[i]=input.vtxSelfloopFlag[i];
+			vtxSelfloopCount[i]=input.vtxSelfloopCount[i];
 			vList[i] = new Vertex(); //initialize the edge lists
 			vList[i].index = input.vList[i].index;
 			vList[i].id = input.vList[i].id;
@@ -457,10 +457,10 @@ public class Graph {
 		typeP = input.typeP;
 		gNode = input.gNode;
 		
-		vtxSelfloopFlag=new byte[numVtx];
+		vtxSelfloopCount=new int[numVtx];
 		vList = new Vertex[numVtx];
 		for (int i=0; i<numVtx; i++) {
-			vtxSelfloopFlag[i]=input.vtxSelfloopFlag[i];
+			vtxSelfloopCount[i]=input.vtxSelfloopCount[i];
 			vList[i] = new Vertex(); //initialize the edge lists
 			vList[i].index = input.vList[i].index;
 			vList[i].id = input.vList[i].id;
